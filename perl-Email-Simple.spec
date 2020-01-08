@@ -4,13 +4,14 @@
 #
 Name     : perl-Email-Simple
 Version  : 2.216
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Simple-2.216.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Simple-2.216.tar.gz
 Summary  : 'simple parsing of RFC2822 message format and headers'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Email-Simple-license = %{version}-%{release}
+Requires: perl-Email-Simple-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Email::Date::Format)
 
@@ -23,6 +24,7 @@ simple parsing of RFC2822 message format and headers
 Summary: dev components for the perl-Email-Simple package.
 Group: Development
 Provides: perl-Email-Simple-devel = %{version}-%{release}
+Requires: perl-Email-Simple = %{version}-%{release}
 
 %description dev
 dev components for the perl-Email-Simple package.
@@ -36,14 +38,24 @@ Group: Default
 license components for the perl-Email-Simple package.
 
 
+%package perl
+Summary: perl components for the perl-Email-Simple package.
+Group: Default
+Requires: perl-Email-Simple = %{version}-%{release}
+
+%description perl
+perl components for the perl-Email-Simple package.
+
+
 %prep
 %setup -q -n Email-Simple-2.216
+cd %{_builddir}/Email-Simple-2.216
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -53,7 +65,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -62,7 +74,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Email-Simple
-cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Email-Simple/LICENSE
+cp %{_builddir}/Email-Simple-2.216/LICENSE %{buildroot}/usr/share/package-licenses/perl-Email-Simple/2274e33ef688306b8de5e787192f497d63da6c44
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -75,9 +87,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Email/Simple.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Email/Simple/Creator.pm
-/usr/lib/perl5/vendor_perl/5.28.2/Email/Simple/Header.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -87,4 +96,10 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Email-Simple/LICENSE
+/usr/share/package-licenses/perl-Email-Simple/2274e33ef688306b8de5e787192f497d63da6c44
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Email/Simple.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Email/Simple/Creator.pm
+/usr/lib/perl5/vendor_perl/5.30.1/Email/Simple/Header.pm
