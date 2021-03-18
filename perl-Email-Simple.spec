@@ -4,7 +4,7 @@
 #
 Name     : perl-Email-Simple
 Version  : 2.216
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Simple-2.216.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Simple-2.216.tar.gz
 Summary  : 'simple parsing of RFC2822 message format and headers'
@@ -100,6 +100,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Email/Simple.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Email/Simple/Creator.pm
-/usr/lib/perl5/vendor_perl/5.30.3/Email/Simple/Header.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Email/Simple.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Email/Simple/Creator.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Email/Simple/Header.pm
