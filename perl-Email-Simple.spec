@@ -7,7 +7,7 @@
 #
 Name     : perl-Email-Simple
 Version  : 2.218
-Release  : 29
+Release  : 30
 URL      : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Simple-2.218.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/R/RJ/RJBS/Email-Simple-2.218.tar.gz
 Summary  : 'simple parsing of RFC2822 message format and headers'
